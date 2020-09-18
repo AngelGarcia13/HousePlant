@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="HousePlant.Views.PlantDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.PrefersHomeIndicatorAutoHidden="True"
+    ios:Page.UseSafeArea="False"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Triggers>
+        <DataTrigger
+            Binding="{Binding Plant.Category}"
+            TargetType="ContentPage"
+            Value="0">
+            <Setter Property="BackgroundColor" Value="{DynamicResource LightBlue}" />
+        </DataTrigger>
+        <DataTrigger
+            Binding="{Binding Plant.Category}"
+            TargetType="ContentPage"
+            Value="1">
+            <Setter Property="BackgroundColor" Value="{DynamicResource LightGreen}" />
+        </DataTrigger>
+    </ContentPage.Triggers>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="40, Auto, *">
+                <Grid.Margin>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS" Value="0,2,0,0" />
+                    </OnPlatform>
+                </Grid.Margin>
+                <Image
+                    Grid.Row="0"
+                    Margin="16,0"
+                    Aspect="AspectFit"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back_icon"
+                    VerticalOptions="CenterAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoBackCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout
+                    Grid.Row="1"
+                    Margin="0"
+                    Padding="0,0,0,24">
+                    <Image
+                        HorizontalOptions="CenterAndExpand"
+                        Source="{Binding Plant.ImageUrl}"
+                        VerticalOptions="EndAndExpand" />
+                </StackLayout>
+                <Frame
+                    Grid.Row="2"
+                    Margin="0,0,0,-40"
+                    Padding="16,26,16,40"
+                    CornerRadius="25"
+                    HasShadow="False">
+                    <StackLayout Spacing="22">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Style="{StaticResource PlantDetailNameLabelStyle}" Text="{Binding Plant.Name}" />
+                                    <Span Text="&#10;" />
+                                    <Span Style="{StaticResource PlantDetailBiologicalNameLabelStyle}" Text="{Binding Plant.BotanicalName}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label LineHeight="1.3">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Style="{StaticResource PlantDetailSubTitleLabelStyle}" Text="About" />
+                                    <Span Text="&#10;" />
+                                    <Span Style="{StaticResource PlantDetailDescriptionLabelStyle}" Text="{Binding Plant.Description}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Style="{StaticResource PlantDetailSubTitleLabelStyle}" Text="Reminder" />
+                        <!--  REMINDERS LAYOUT  -->
+                        <FlexLayout
+                            AlignContent="Start"
+                            AlignItems="Start"
+                            BindableLayout.ItemsSource="{Binding Plant.Reminders}"
+                            Direction="Row"
+                            JustifyContent="Center"
+                            Wrap="Wrap">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame
+                                        Margin="10"
+                                        Padding="8"
+                                        BackgroundColor="{DynamicResource StrongGreen}"
+                                        CornerRadius="10"
+                                        HasShadow="False">
+                                        <Grid ColumnDefinitions="22, 120" RowDefinitions="22, 60">
+                                            <Image
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Aspect="AspectFit"
+                                                Source="{Binding Icon}" />
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Style="{StaticResource PlantDetailRequirementLabelStyle}"
+                                                Text="{Binding Requirement}"
+                                                VerticalTextAlignment="End" />
+                                            <Label
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Grid.ColumnSpan="2"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Style="{StaticResource PlantDetailRequirementDescriptionLabelStyle}"
+                                                Text="{Binding Description}"
+                                                VerticalTextAlignment="Center" />
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                        <!--  END OF REMINDERS LAYOUT  -->
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

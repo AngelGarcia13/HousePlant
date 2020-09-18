@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication
+    x:Class="HousePlant.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms">
+    <Application.Resources>
+        <!--  Application resource dictionary  -->
+        <ResourceDictionary Source="Resources/Themes/MainTheme.xaml" />
+
+        <!--  Application styles  -->
+        <Style x:Key="AppNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource DarkGreen}" />
+            <Setter Property="FontSize" Value="21" />
+            <Setter Property="FontFamily" Value="Poppins-Bold" />
+        </Style>
+        <Style x:Key="FeaturedPlantNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PlainWhite}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+        <Style x:Key="FeaturedPlantBiologicalNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PlainWhite}" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontFamily" Value="Poppins-Regular" />
+        </Style>
+        <Style x:Key="CategoriesTitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrettyBlack}" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+        <Style x:Key="CategoryNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PlainWhite}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Poppins-Medium" />
+        </Style>
+        <Style x:Key="PlantDetailNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrettyBlack}" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+        <Style x:Key="PlantDetailBiologicalNameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrettyBlack}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Poppins-Medium" />
+        </Style>
+        <Style x:Key="PlantDetailSubTitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrettyBlack}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+        <Style x:Key="PlantDetailDescriptionLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PrettyBlack}" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Poppins-Medium" />
+        </Style>
+        <Style x:Key="PlantDetailRequirementLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PlainWhite}" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+        <Style x:Key="PlantDetailRequirementDescriptionLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource PlainWhite}" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontFamily" Value="Poppins-SemiBold" />
+        </Style>
+    </Application.Resources>
+</prism:PrismApplication>

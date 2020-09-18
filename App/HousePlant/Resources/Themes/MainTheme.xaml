@@ -1,0 +1,11 @@
+﻿<ResourceDictionary
+    x:Class="HousePlant.Resources.Themes.MainTheme"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="LightGreen">#7cab87</Color>
+    <Color x:Key="LightBlue">#8fc8ff</Color>
+    <Color x:Key="StrongGreen">#76b155</Color>
+    <Color x:Key="PrettyBlack">#2a2a2a</Color>
+    <Color x:Key="PlainWhite">#fff</Color>
+    <Color x:Key="DarkGreen">#152f11</Color>
+</ResourceDictionary>

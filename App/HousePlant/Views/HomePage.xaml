@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="HousePlant.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    x:Name="homePage"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--  TOP NAVBAR  -->
+                <Grid ColumnDefinitions="54, *, 54" RowDefinitions="64">
+                    <Image
+                        Grid.Column="0"
+                        Aspect="AspectFill"
+                        HeightRequest="18"
+                        HorizontalOptions="Center"
+                        Source="menu_icon"
+                        VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ToogleMenuCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                        Grid.Column="1"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource AppNameLabelStyle}"
+                        Text="Houseplant"
+                        VerticalTextAlignment="Center" />
+                    <Image
+                        Grid.Column="2"
+                        Aspect="AspectFill"
+                        HeightRequest="18"
+                        HorizontalOptions="Center"
+                        Source="search_icon"
+                        VerticalOptions="Center" />
+                </Grid>
+                <!--  END OF TOP NAVBAR  -->
+
+                <!--  FEATURED PLANTS CARROUSEL  -->
+                <CarouselView
+                    HeightRequest="360"
+                    ItemsSource="{Binding FeaturedPlants}"
+                    PeekAreaInsets="70">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" SnapPointsType="Mandatory" />
+                    </CarouselView.ItemsLayout>
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.GoToPlantDetailsCommand, Source={x:Reference Name=homePage}}" CommandParameter="{Binding}" />
+                                </Grid.GestureRecognizers>
+                                <Frame
+                                    Margin="0,66,0,0"
+                                    Padding="0"
+                                    BackgroundColor="DarkGray"
+                                    CornerRadius="20"
+                                    HasShadow="False"
+                                    HeightRequest="258"
+                                    HorizontalOptions="StartAndExpand"
+                                    IsClippedToBounds="True"
+                                    WidthRequest="230">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Category}"
+                                            TargetType="Frame"
+                                            Value="0">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource LightBlue}" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            Binding="{Binding Category}"
+                                            TargetType="Frame"
+                                            Value="1">
+                                            <Setter Property="BackgroundColor" Value="{DynamicResource LightGreen}" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame
+                                        Grid.Row="1"
+                                        Margin="0,0,-15,-15"
+                                        BackgroundColor="{DynamicResource PrettyBlack}"
+                                        CornerRadius="20"
+                                        HasShadow="False"
+                                        HeightRequest="52"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="End"
+                                        WidthRequest="138">
+                                        <StackLayout>
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Style="{StaticResource FeaturedPlantNameLabelStyle}"
+                                                Text="{Binding Name}" />
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="1"
+                                                Style="{StaticResource FeaturedPlantBiologicalNameLabelStyle}"
+                                                Text="{Binding BotanicalName}" />
+                                        </StackLayout>
+                                    </Frame>
+                                </Frame>
+                                <Image
+                                    Margin="0,0,0,88"
+                                    HeightRequest="254"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding ImageUrl}"
+                                    VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <!--  END OF FEATURED PLANTS CARROUSEL  -->
+                <!--  PLANT CATEGORIES  -->
+                <Label
+                    Margin="15,10"
+                    Style="{StaticResource CategoriesTitleLabelStyle}"
+                    Text="Categories" />
+                <Grid
+                    Margin="15,0,15,20"
+                    ColumnDefinitions="*, *"
+                    ColumnSpacing="16"
+                    RowDefinitions="148, 148"
+                    RowSpacing="16">
+                    <Frame
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="DarkGray"
+                        CornerRadius="20"
+                        HasShadow="False"
+                        IsClippedToBounds="True">
+                        <Grid>
+                            <Image Aspect="AspectFill" Source="outside_plant_category" />
+                            <BoxView Opacity="0.5">
+                                <BoxView.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="#EDEDED" />
+                                        <GradientStop Offset="1.0" Color="#2a2a2a" />
+                                    </LinearGradientBrush>
+                                </BoxView.Background>
+                            </BoxView>
+                            <Label
+                                Margin="10,14"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource CategoryNameLabelStyle}"
+                                Text="Outside Plant"
+                                VerticalTextAlignment="End" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="DarkGray"
+                        CornerRadius="20"
+                        HasShadow="False"
+                        IsClippedToBounds="True">
+                        <Grid>
+                            <Image Aspect="AspectFill" Source="cactus_plant_category" />
+                            <BoxView Opacity="0.5">
+                                <BoxView.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="#EDEDED" />
+                                        <GradientStop Offset="1.0" Color="#2a2a2a" />
+                                    </LinearGradientBrush>
+                                </BoxView.Background>
+                            </BoxView>
+                            <Label
+                                Margin="10,14"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource CategoryNameLabelStyle}"
+                                Text="Cactus"
+                                VerticalTextAlignment="End" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="0"
+                        BackgroundColor="DarkGray"
+                        CornerRadius="20"
+                        HasShadow="False"
+                        IsClippedToBounds="True">
+                        <Grid>
+                            <Image Aspect="AspectFill" Source="inside_plant_category" />
+                            <BoxView Opacity="0.5">
+                                <BoxView.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Offset="0.1" Color="#EDEDED" />
+                                        <GradientStop Offset="1.0" Color="#2a2a2a" />
+                                    </LinearGradientBrush>
+                                </BoxView.Background>
+                            </BoxView>
+                            <Label
+                                Margin="10,14"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource CategoryNameLabelStyle}"
+                                Text="Inside Plant"
+                                VerticalTextAlignment="End" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+                <!--  END OF PLANT CATEGORIES  -->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
